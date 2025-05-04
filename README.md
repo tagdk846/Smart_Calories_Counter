@@ -3,20 +3,6 @@ A smart AI-powered web app that estimates calorie counts for food items. Users c
 
 This feature empowers health-conscious users to make better food choices when ordering online.
 
-📁 Project Structure
-Calories-Counter/
-├── src/
-│   ├── frontend/            # Frontend UI files
-│   │   ├── index.html       # Main HTML page
-│   │   ├── styles.css       # UI styling
-│   │   └── app.js           # Client-side logic
-│   ├── backend/             # Node.js backend
-│   │   └── server.js        # Express API server
-│   └── tests/               # Optional test files
-├── package.json             # Node dependencies
-├── requirements.txt         # Python (if needed)
-├── .env                     # API credentials
-└── README.md                # Documentation
 
 ✨ Key Features
 🔗 Paste Zomato/Swiggy URLs to auto-detect food items.
