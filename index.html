@@ -1,66 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calorie Counter</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calorie Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #333;
+    }
+    .input-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .input-option {
+      flex: 1 1 300px;
+    }
+    input[type="url"], select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      border-radius: 4px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .results-section {
+      display: none;
+      margin-top: 30px;
+    }
+    .food-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .nutrition-info {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .nutrition-item {
+      margin-bottom: 8px;
+    }
+    .reasoning {
+      margin-top: 12px;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Calorie Counter</h1>
-        <div class="input-section">
-            <div class="input-option">
-                <h3>Paste Food URL</h3>
-                <input type="url" id="foodUrl" placeholder="Paste Zomato/Swiggy URL here">
-            </div>
-            <div class="input-option">
-                <h3>Or Select Food Item</h3>
-                <select id="foodSelect">
-                    <option value="">Choose a food item</option>
-                    <option value="pizza">Pizza</option>
-                    <option value="burger">Burger</option>
-                    <option value="pasta">Pasta</option>
-                    <option value="sushi">Sushi</option>
-                    <option value="salad">Salad</option>
-                    <option value="friedChicken">Fried Chicken</option>
-                    <option value="iceCream">Ice Cream</option>
-                    <option value="chocolateCake">Chocolate Cake</option>
-                    <option value="frenchFries">French Fries</option>
-                    <option value="sandwich">Sandwich</option>
-                    <option value="tacos">Tacos</option>
-                    <option value="ramen">Ramen</option>
-                    <option value="steak">Steak</option>
-                    <option value="pancakes">Pancakes</option>
-                    <option value="donut">Donut</option>
-                    <option value="quinoaSalad">Quinoa Salad</option>
-                    <option value="falafel">Falafel</option>
-                    <option value="butterChicken">Butter Chicken</option>
-                    <option value="kimchi">Kimchi</option>
-                    <option value="lentilSoup">Lentil Soup</option>
-                    <option value="avocadoToast">Avocado Toast</option>
-                </select>
-            </div>
-            <button id="analyzeBtn">Analyze Calories</button>
-        </div>
-        
-        <div id="results" class="results-section">
-            <div id="foodInfo" class="food-info">
-                <h2>Food Details</h2>
-                <div id="foodImage" class="food-image"></div>
-                <div id="foodName" class="food-name"></div>
-            </div>
-            
-            <div id="nutritionInfo" class="nutrition-info">
-                <h2>Nutrition Information</h2>
-                <div id="calories" class="nutrition-item"></div>
-                <div id="protein" class="nutrition-item"></div>
-                <div id="carbs" class="nutrition-item"></div>
-                <div id="fats" class="nutrition-item"></div>
-                <div id="reasoning" class="reasoning"></div>
-            </div>
-        </div>
+  <div class="container">
+    <h1>Calorie Counter</h1>
+    <div class="input-section">
+      <div class="input-option">
+        <h3>Paste Food URL</h3>
+        <input type="url" id="foodUrl" placeholder="Paste Zomato/Swiggy URL here" />
+      </div>
+      <div class="input-option">
+        <h3>Or Select Food Item</h3>
+        <select id="foodSelect">
+          <option value="">Choose a food item</option>
+          <option value="pizza">Pizza</option>
+          <option value="burger">Burger</option>
+          <option value="pasta">Pasta</option>
+          <option value="sushi">Sushi</option>
+          <option value="salad">Salad</option>
+          <option value="fried chicken">Fried Chicken</option>
+          <option value="ice cream">Ice Cream</option>
+          <option value="chocolate cake">Chocolate Cake</option>
+          <option value="french fries">French Fries</option>
+          <option value="sandwich">Sandwich</option>
+          <option value="tacos">Tacos</option>
+          <option value="ramen">Ramen</option>
+          <option value="steak">Steak</option>
+          <option value="pancakes">Pancakes</option>
+          <option value="donut">Donut</option>
+          <option value="quinoa salad">Quinoa Salad</option>
+          <option value="falafel">Falafel</option>
+          <option value="butter chicken">Butter Chicken</option>
+          <option value="kimchi">Kimchi</option>
+          <option value="lentil soup">Lentil Soup</option>
+          <option value="avocado toast">Avocado Toast</option>
+        </select>
+      </div>
+      <button id="analyzeBtn">Analyze Calories</button>
     </div>
-    <script src="app.js"></script>
+
+    <div id="results" class="results-section">
+      <div id="foodInfo" class="food-info">
+        <h2>Food Details</h2>
+        <div id="foodImage" class="food-image"></div>
+        <div id="foodName" class="food-name"></div>
+      </div>
+      <div id="nutritionInfo" class="nutrition-info">
+        <h2>Nutrition Information</h2>
+        <div id="calories" class="nutrition-item"></div>
+        <div id="protein" class="nutrition-item"></div>
+        <div id="carbs" class="nutrition-item"></div>
+        <div id="fats" class="nutrition-item"></div>
+        <div id="reasoning" class="reasoning"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = "https://api-inference.huggingface.co/models/gpt2";
+    const API_TOKEN = "hf_your_token_here"; // Replace with your actual token
+
+    const foodImages = {
+      pizza: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Supreme_pizza.jpg",
+      burger: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Burger_%28black_bg%29.jpg",
+      pasta: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Spaghetti_al_Pomodoro.JPG",
+      salad: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Salad_platter.jpg",
+      donut: "https://upload.wikimedia.org/wikipedia/commons/0/09/Glazed-Donut.jpg",
+      icecream: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Ice_Cream_dessert_02.jpg",
+      "chocolate cake": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chocolate_Cake.jpg/640px-Chocolate_Cake.jpg",
+      "fried chicken": "https://upload.wikimedia.org/wikipedia/commons/1/11/Fried_chicken_-_Arnold_Gatilao.jpg",
+      "french fries": "https://upload.wikimedia.org/wikipedia/commons/6/65/French_Fries.JPG"
+    };
+
+    document.getElementById("analyzeBtn").addEventListener("click", async () => {
+      const selectedFood = document.getElementById("foodSelect").value;
+      if (!selectedFood) {
+        alert("Please select a food item.");
+        return;
+      }
+
+      document.getElementById("results").style.display = "block";
+      document.getElementById("calories").textContent = "Estimating...";
+
+      const prompt = `Estimate the calories, protein, carbs, and fats in: ${selectedFood}`;
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${API_TOKEN}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ inputs: prompt })
+        });
+
+        const data = await response.json();
+        const output = data?.[0]?.generated_text || "No data.";
+
+        // Try to extract nutrition info from text
+        document.getElementById("calories").textContent = output.match(/calories?:?\s*(\d+)/i)?.[0] || "Calories: Unknown";
+        document.getElementById("protein").textContent = output.match(/protein:?\s*[\d.]+/i)?.[0] || "Protein: Unknown";
+        document.getElementById("carbs").textContent = output.match(/carbs?:?\s*[\d.]+/i)?.[0] || "Carbs: Unknown";
+        document.getElementById("fats").textContent = output.match(/fat[s]?:?\s*[\d.]+/i)?.[0] || "Fats: Unknown";
+        document.getElementById("reasoning").textContent = "Estimate based on language model output.";
+
+        document.getElementById("foodName").textContent = selectedFood;
+
+        const imageKey = Object.keys(foodImages).find(k => selectedFood.toLowerCase().includes(k));
+        if (imageKey) {
+          document.getElementById("foodImage").innerHTML = `<img src="${foodImages[imageKey]}" alt="${selectedFood}">`;
+        } else {
+          document.getElementById("foodImage").innerHTML = "";
+        }
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById("calories").textContent = "Error estimating.";
+      }
+    });
+  </script>
 </body>
 </html>
